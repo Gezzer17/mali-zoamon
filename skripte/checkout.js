@@ -2,6 +2,7 @@ const gridKorpe = document.querySelector('.order-summary');
 const brojStvari = document.querySelector('.return-to-home-link');
 
 
+
 let dodajDane = (datum,brojDana)=>
 {
     const rezultat = new Date(datum);
@@ -66,7 +67,7 @@ let UcitajKorpu = () =>
                                     <input type="radio" checked
                                         class="delivery-option-input"
                                         name="${objekat.produkt.id}-delivery-option">
-                                    <div>
+                                    <div class="cijenaDatum">
                                         <div class="delivery-option-date">
                                         ${dodajDane(new Date(),1)}
                                         </div>
@@ -79,7 +80,7 @@ let UcitajKorpu = () =>
                                     <input type="radio"
                                         class="delivery-option-input"
                                         name="${objekat.produkt.id}-delivery-option">
-                                    <div>
+                                    <div class="cijenaDatum">
                                         <div class="delivery-option-date">
                                         ${dodajDane(new Date(),5)}
                                         </div>
@@ -92,7 +93,7 @@ let UcitajKorpu = () =>
                                     <input type="radio"
                                         class="delivery-option-input"
                                         name="${objekat.produkt.id}-delivery-option">
-                                    <div>
+                                    <div class="cijenaDatum">
                                         <div class="delivery-option-date">
                                         ${dodajDane(new Date(),9)}
                                         </div>
@@ -114,6 +115,26 @@ let UcitajBroj = ()=>
     brojStvari.innerHTML = productsInCart.length;
 }
 
+
+
+
+
+
 UcitajKorpu();
 UcitajBroj();
+
+
+
+/*Nakon ucitavanja korpe dodaj event listenere za svaki datum u slucaju cijene i posiljke */
+const deliverOpcija = document.querySelectorAll('.delivery-option');
+
+deliverOpcija.forEach(deliver=>{
+    
+    deliver.addEventListener('click',(e)=>
+    {
+        let dani = deliver.querySelector('.cijenaDatum .delivery-option-date')
+        let cijena = deliver.querySelector('.cijenaDatum .delivery-option-price')
+        
+    })
+})
 
