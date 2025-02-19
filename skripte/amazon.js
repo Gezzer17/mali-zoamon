@@ -72,3 +72,61 @@ let PopulateDate = (mjesto,data)  =>
 }
 PopulateDate(productGrid,products);
 
+const dodajUKorpuDugmad = Array.from(document.querySelectorAll('.add-to-cart-button'));
+
+
+let UpdateTheAmountOfThingsInCart = ()=>
+    {
+        const kvantitetUKorpi = document.querySelector('.cart-quantity');
+        kvantitetUKorpi.innerHTML = productsInCart.length;
+
+    }
+
+UpdateTheAmountOfThingsInCart();
+let DodajUKorpu = (produkt,kvantitet)=>
+{
+
+    if(productsInCart.some(objekat => objekat.produkt.id === produkt.id))
+    {
+        
+        let objekatKojiTrazimo = productsInCart.find(objekat => objekat.produkt.id === produkt.id);
+        if(objekatKojiTrazimo.brojnost !== kvantitet)
+        {
+            objekatKojiTrazimo.brojnost = kvantitet;
+            console.log(kvantitet);
+        }
+        else
+        {
+            
+        }
+        
+    }
+    else
+    {
+        console.log("Nema u korpi");
+        productsInCart.push({produkt: produkt, brojnost: kvantitet});
+        UpdateTheAmountOfThingsInCart();
+    }
+}
+
+
+dodajUKorpuDugmad.forEach((dugme)=>
+{
+    dugme.addEventListener('click',(e)=>
+    {
+            let odabraniProdukt = e.target.closest('.product-container');
+            let idProdukta = odabraniProdukt.getAttribute('data-product-id');
+            let kvantitet = odabraniProdukt.querySelector('select').value;
+            odabraniProdukt = products.find(objekat => objekat.id === idProdukta)
+            DodajUKorpu(odabraniProdukt,kvantitet);
+            
+            
+
+    })
+})
+
+
+
+
+
+
