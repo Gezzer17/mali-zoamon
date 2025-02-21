@@ -13,7 +13,6 @@ updateDeliveryDateInView();//Klik na opciju mijenja sve
 
 
 
-//Evenet Listnerei za brisanje
 
 
 

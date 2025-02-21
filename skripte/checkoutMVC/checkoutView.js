@@ -157,17 +157,34 @@ export let disabledButton = (istina)=>
 
 }
 
-export let hideUpdateButtonAndShowOthers = (dugme)=>
+
+
+export let toggleQuantityElements = (dugme)=>
 {
-    let elementiPotrebni = dugme.closest('.product-quantity');
-    let input = elementiPotrebni.querySelector('.new-quantity-input');
-    let quantityLabel =elementiPotrebni.querySelector('.quantity-label');
-    let spanSave = elementiPotrebni.querySelector('.save-quantity-link')
     
-    quantityLabel.classList.toggle('sakriveni');
-    dugme.classList.toggle('sakriveni');
-    input.classList.toggle('sakriveni');
-    spanSave.classList.toggle('sakriveni');
-    input.value = Number(quantityLabel.innerHTML);
+    const divProduktKvanitet = dugme.closest('.product-quantity');
+    const input = divProduktKvanitet.querySelector('.new-quantity-input');
+    const quantityLabel = divProduktKvanitet.querySelector('.quantity-label');
+
+
+        quantityLabel.classList.toggle('sakriveni');
+        dugme.classList.toggle('sakriveni');
+        input.classList.toggle('sakriveni');
+
+    if(dugme.classList.contains('update-quantity-link'))
+    {
+        const spanSave = divProduktKvanitet.querySelector('.save-quantity-link');
+        spanSave.classList.toggle('sakriveni');
+        input.value = Number(quantityLabel.innerHTML);
+        
+    }
+    else
+    {
+        const spanUpdate = divProduktKvanitet.querySelector('.update-quantity-link');
+        spanUpdate.classList.toggle('sakriveni');
+        
+    }
+    
+
 
 }

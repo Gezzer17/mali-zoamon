@@ -69,11 +69,13 @@ export let  updateDeliveryDateInView = () =>
         //EventListenerZaUpdate
         if(opcija3)
         {
-            viewCh.hideUpdateButtonAndShowOthers(opcija3);
+            viewCh.toggleQuantityElements(opcija3);
         }
+        //EventListenerZaSave
         if(opcija4)
         {
-            
+            //LogikaZaUpdateKvaniteta
+            viewCh.toggleQuantityElements(opcija4);
         }
 
     })
