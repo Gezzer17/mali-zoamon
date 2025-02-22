@@ -1,4 +1,5 @@
 import { deliveryOptions } from "../data/deliveryOptions.js";
+import formatIznos from "../skripte/utils/formatCurrency.js";
 
 export let productsInCart = [];
 
@@ -37,7 +38,7 @@ export let returnTotalPriceWithoutShipping = ()=>
     
             let cijena = productsInCart.reduce((acc,objekat)=>
             {
-                acc += (objekat.produkt.priceCents/100)*objekat.brojnost;
+                acc += (formatIznos(objekat.produkt.priceCents))*objekat.brojnost;
                 return acc;
             },0);
            
@@ -108,7 +109,7 @@ export let returnShippingFee = ()=>
 
     },0)
 
-    return (sumaShippingaFee/100);
+    return (formatIznos(sumaShippingaFee));
 }
 
 export let DodajUKorpu = (produkt,kvantitet)=> 
@@ -136,6 +137,7 @@ export let returnSubTotalPriceAndShipping = ()=>
     {
         return vrijednost;
     }
+    console.log(vrijednost);
     
 
     return 0;
@@ -147,6 +149,7 @@ export let retrunPriceOfTax = ()=>
     {
         return vrijednost;
     }
+    
     return 0;
 }
 
@@ -157,6 +160,7 @@ export let grandTotalPrice = ()=>
     {
         return vrijednost;
     }
+   
     return 0;
 }
 

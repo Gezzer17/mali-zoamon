@@ -17,7 +17,7 @@ export let updatePaymentSummaryInView = () =>
     
 
     viewCh.updatePaymentSummaryPrviRed(UkupnoProizodaUKorpi,ukupnaCijenaBezShippinga.toFixed(2));
-    viewCh.updatePaymentSummaryShippingFee(vrijednostShippinga.toFixed(2));
+    viewCh.updatePaymentSummaryShippingFee(vrijednostShippinga);
     viewCh.updatePaymentSummaryTotalBeforeTaxes(UkupnaVrijednostBezTaxi.toFixed(2));
     viewCh.updatePaymentSummaryTotalTax(vrijednostTaxe.toFixed(2));
     viewCh.updatePaymentSummaryGrandTotal(konacnaCijena.toFixed(2));
