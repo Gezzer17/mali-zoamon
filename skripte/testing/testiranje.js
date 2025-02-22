@@ -3,7 +3,7 @@ import formatiranjeIznos from '../utils/formatCurrency.js';
 
 
 
-console.log("Test suite: formatCurrency");
+console.log("Test suite: formatCurrency");  
 let provjeraFormatiranjeIznosa = () =>
 {
     console.log("Converts cents into dollars")
