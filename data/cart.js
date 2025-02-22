@@ -67,14 +67,14 @@ export let DeleteFromTheCart = (produktId) =>
 
 export let UpdateKvanitetTogItema = (produktID,kvantitet)=>
 {
-    console.log(produktID);
+    
     let objekat = productsInCart.find(obj=> obj.produkt.id === produktID);
     
     if(objekat)
     {
-        console.log(objekat);
+        
         objekat.brojnost = kvantitet;
-        console.log(objekat);
+       
     }
     else
     {

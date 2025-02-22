@@ -33,7 +33,6 @@ export let renderCartBeforeCheckout = () =>
             productsInCart.forEach(objekat=>
             {
                 let dajMiDatum = objekat.deliverOpcija;
-                console.log(dajMiDatum);
                 let datumPotrebni = deliveryOptions.find(opcija => opcija.id === Number(dajMiDatum));
                 gridKorpe.innerHTML +=`<div class="cart-item-container" data-cart-item-id="${objekat.produkt.id}">
                                 <div class="delivery-date">
@@ -180,9 +179,11 @@ export let toggleQuantityElements = (dugme)=>
     }
     else
     {
+        //Vraca vrijednost inputa
         const spanUpdate = divProduktKvanitet.querySelector('.update-quantity-link');
         spanUpdate.classList.toggle('sakriveni');
-        
+        quantityLabel.innerHTML  = input.value;
+        return Number(input.value);
     }
     
 

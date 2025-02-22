@@ -1,4 +1,4 @@
-import { returnShippingFee, returnSubTotalPriceAndShipping, retrunPriceOfTax, returnQuantityOfCart, returnTotalPriceWithoutShipping, grandTotalPrice,updateDatumDostave, DeleteFromTheCart } from "../../data/cart.js"
+import { returnShippingFee, returnSubTotalPriceAndShipping, retrunPriceOfTax, returnQuantityOfCart, returnTotalPriceWithoutShipping, grandTotalPrice,updateDatumDostave, DeleteFromTheCart,UpdateKvanitetTogItema } from "../../data/cart.js"
 import * as viewCh from "../checkoutMVC/checkoutView.js" 
 import { returnFormatBrojDana } from "../../data/deliveryOptions.js";
 
@@ -75,7 +75,13 @@ export let  updateDeliveryDateInView = () =>
         if(opcija4)
         {
             //LogikaZaUpdateKvaniteta
-            viewCh.toggleQuantityElements(opcija4);
+            const vrijednostPromjene = viewCh.toggleQuantityElements(opcija4);
+            const vrijednostID = opcija4.closest('.cart-item-container').dataset.cartItemId;
+            UpdateKvanitetTogItema(vrijednostID,vrijednostPromjene);
+            updatePaymentSummaryInView();
+            viewCh.renderNumberOfThingsInCart();
+
+
         }
 
     })
