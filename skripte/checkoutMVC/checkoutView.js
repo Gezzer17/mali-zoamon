@@ -82,7 +82,7 @@ export let renderCartBeforeCheckout = () =>
 
 
 };
-let deliveryOpcijeHTML = (objekat)=>
+export let deliveryOpcijeHTML = (objekat)=>
 {
     let html = '';
     deliveryOptions.forEach(deliveryOpcija=>{
