@@ -25,7 +25,7 @@ export let renderCartBeforeCheckout = () =>
                     </a>`;
             
                     
-                    
+                        
         }
         else
         {
