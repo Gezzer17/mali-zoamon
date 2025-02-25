@@ -1,19 +1,19 @@
-import { returnShippingFee, returnSubTotalPriceAndShipping, retrunPriceOfTax, returnQuantityOfCart, returnTotalPriceWithoutShipping, grandTotalPrice,updateDatumDostave, DeleteFromTheCart,UpdateKvanitetTogItema } from "../../data/cart.js"
+
 import * as viewCh from "../checkoutMVC/checkoutView.js" 
 import { returnFormatBrojDana } from "../../data/deliveryOptions.js";
-
+import { kart } from "../../data/kart.js";
 
 
 
 export let updatePaymentSummaryInView = () =>
 {
-    const UkupnoProizodaUKorpi = returnQuantityOfCart();
-    const ukupnaCijenaBezShippinga = returnTotalPriceWithoutShipping();
-    const vrijednostShippinga = returnShippingFee();
+    const UkupnoProizodaUKorpi = kart.returnQuantityOfCart();
+    const ukupnaCijenaBezShippinga = kart.returnTotalPriceWithoutShipping();
+    const vrijednostShippinga = kart.returnShippingFee();
     
-    const UkupnaVrijednostBezTaxi = returnSubTotalPriceAndShipping();
-    const vrijednostTaxe = retrunPriceOfTax();
-    const konacnaCijena = grandTotalPrice();
+    const UkupnaVrijednostBezTaxi = kart.returnSubTotalPriceAndShipping();
+    const vrijednostTaxe = kart.retrunPriceOfTax();
+    const konacnaCijena = kart.grandTotalPrice();
     
 
     viewCh.updatePaymentSummaryPrviRed(UkupnoProizodaUKorpi,ukupnaCijenaBezShippinga.toFixed(2));
@@ -49,7 +49,7 @@ export let  updateDeliveryDateInView = () =>
                 
                 let idProdukta = cartItemContainer.dataset.cartItemId;
                 //UpdateCartDeliveryTime
-                updateDatumDostave(idProdukta,idDeliverya);
+                kart.updateDatumDostave(idProdukta,idDeliverya);
                 //
                 //RerenderDateAndCheckbox
                 viewCh.updateDeliveryDateAndCheckBox(datum,cartItemContainer,potrebniInput);
@@ -61,7 +61,7 @@ export let  updateDeliveryDateInView = () =>
         if(opcija2)
         {
             let idProdukta = opcija2.dataset.productId;
-            DeleteFromTheCart(idProdukta);
+            kart.DeleteFromTheCart(idProdukta);
             viewCh.renderNumberOfThingsInCart();
             viewCh.renderCartBeforeCheckout();
             updatePaymentSummaryInView();
@@ -77,7 +77,7 @@ export let  updateDeliveryDateInView = () =>
             //LogikaZaUpdateKvaniteta
             const vrijednostPromjene = viewCh.toggleQuantityElements(opcija4);
             const vrijednostID = opcija4.closest('.cart-item-container').dataset.cartItemId;
-            UpdateKvanitetTogItema(vrijednostID,vrijednostPromjene);
+            kart.UpdateKvanitetTogItema(vrijednostID,vrijednostPromjene);
             updatePaymentSummaryInView();
             viewCh.renderNumberOfThingsInCart();
 

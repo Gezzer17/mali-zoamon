@@ -1,5 +1,5 @@
-import { DodajUKorpu } from "../../../data/cart.js";
-import { productsInCart } from "../../../data/cart.js";
+
+import { kart } from "../../../data/kart.js";
 
 describe('Testing the addToTheCart function', () => {
     let elementProbaNovi;
@@ -7,8 +7,8 @@ describe('Testing the addToTheCart function', () => {
 
     beforeEach(()=>
     {
-        productsInCart.length = 0;
-        console.log(productsInCart);
+        kart.productsInCart.length = 0;
+        console.log(kart.productsInCart.length);
 
         elementProbaNovi ={produkt:{id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
             image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -36,21 +36,21 @@ describe('Testing the addToTheCart function', () => {
               "basketballs"
             ]},brojnost:1,deliverOpcija:1};
             
-            productsInCart.push(elementProbaVecTu);
+            kart.productsInCart.push(elementProbaVecTu);
     });
 
 
     it("Testing if the element is already there, just update the quantity of element",()=>
     {
-            let objectThatWeNeed = productsInCart.find(item=> item.produkt.id === elementProbaVecTu.produkt.id);
+            let objectThatWeNeed = kart.productsInCart.find(item=> item.produkt.id === elementProbaVecTu.produkt.id);
             let pocetnaBrojnost = objectThatWeNeed.brojnost;
-            let velcinaNiza = productsInCart.length;
+            let velcinaNiza = kart.productsInCart.length;
 
             //Calling the function
-            DodajUKorpu(elementProbaVecTu.produkt,3);
+            kart.DodajUKorpu(elementProbaVecTu.produkt,3);
 
-            let updatedItem = productsInCart.find(item=> item.produkt.id === elementProbaVecTu.produkt.id);
-            expect(productsInCart.length).toEqual(velcinaNiza);
+            let updatedItem = kart.productsInCart.find(item=> item.produkt.id === elementProbaVecTu.produkt.id);
+            expect(kart.productsInCart.length).toEqual(velcinaNiza);
             expect(updatedItem.brojnost).toBe(pocetnaBrojnost+3);
 
 
@@ -58,13 +58,13 @@ describe('Testing the addToTheCart function', () => {
 
     it("Testing if the element is not there, add it to the cart",()=>
     {
-            let pocetnaVelicinaNiza = productsInCart.length;
+            let pocetnaVelicinaNiza = kart.productsInCart.length;
 
-            DodajUKorpu(elementProbaNovi.produkt,1);
+            kart.DodajUKorpu(elementProbaNovi.produkt,1);
 
-            let dodaniElementUnizu = productsInCart.find(item => item.produkt.id === elementProbaNovi.produkt.id);
+            let dodaniElementUnizu = kart.productsInCart.find(item => item.produkt.id === elementProbaNovi.produkt.id);
 
-            expect(productsInCart.length).toBe(pocetnaVelicinaNiza+1); 
+            expect(kart.productsInCart.length).toBe(pocetnaVelicinaNiza+1); 
             expect(dodaniElementUnizu).toBeDefined();
             expect(dodaniElementUnizu.brojnost).toBe(1);
             expect(dodaniElementUnizu.deliverOpcija).toBe(1);

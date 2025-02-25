@@ -1,6 +1,6 @@
 import { renderCartBeforeCheckout } from '../../checkoutMVC/checkoutView.js';
-import { productsInCart } from '../../../data/cart.js';
 import { deliveryOptions } from '../../../data/deliveryOptions.js';
+import { kart } from '../../../data/kart.js';
 
 describe('renderCartBeforeCheckout', () => {
     let container;
@@ -21,7 +21,7 @@ describe('renderCartBeforeCheckout', () => {
 
     it('should display "Your cart is empty" when the cart is empty', () => {
        
-        productsInCart.length = 0;
+        kart.productsInCart.length = 0;
 
     
         renderCartBeforeCheckout();
@@ -33,8 +33,8 @@ describe('renderCartBeforeCheckout', () => {
 
     it('should render cart items when the cart is not empty', () => {
         
-        productsInCart.length = 0; 
-        productsInCart.push({
+        kart.productsInCart.length = 0; 
+        kart.productsInCart.push({
             produkt: {
                 id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
                 image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -49,7 +49,7 @@ describe('renderCartBeforeCheckout', () => {
         renderCartBeforeCheckout();
 
         
-        console.log(container.innerHTML);
+       
 
        
         expect(container.innerHTML).toContain('Black and Gray Athletic Cotton Socks - 6 Pairs');

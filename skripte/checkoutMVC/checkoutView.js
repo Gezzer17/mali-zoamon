@@ -1,12 +1,12 @@
-import { returnQuantityOfCart } from "../../data/cart.js";
+
 import { deliveryOptions } from "../../data/deliveryOptions.js";
-import { productsInCart } from "../../data/cart.js";
 import {dodajDane} from "../utils/formatDana.js";
+import { kart } from "../../data/kart.js";
 
 export let renderNumberOfThingsInCart = ()=>
 {
     const brojStvari = document.querySelector('.return-to-home-link');
-    brojStvari.innerHTML = returnQuantityOfCart();
+    brojStvari.innerHTML = kart.returnQuantityOfCart();
 }
 
 
@@ -15,7 +15,7 @@ export let renderCartBeforeCheckout = () =>
 {
     
     const gridKorpe = document.querySelector('.order-summary');
-        if(!returnQuantityOfCart())
+        if(!kart.returnQuantityOfCart())
         {
             gridKorpe.innerHTML = ` <div data-testid="empty-cart-message" style="margin-bottom:10px">
                         Your cart is empty.
@@ -30,7 +30,7 @@ export let renderCartBeforeCheckout = () =>
         else
         {
             gridKorpe.innerHTML ="";
-            productsInCart.forEach(objekat=>
+            kart.productsInCart.forEach(objekat=>
             {
                 let dajMiDatum = objekat.deliverOpcija;
                 let datumPotrebni = deliveryOptions.find(opcija => opcija.id === Number(dajMiDatum));

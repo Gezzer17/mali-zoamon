@@ -1,4 +1,4 @@
-import { DodajUKorpu } from "../../data/cart.js";
+import { kart } from "../../data/kart.js";
 import { fjaPrikazPoruke } from "./amazonView.js";
 import { renderCartQuantity } from "../sharedMVC/SharedView.js";
 import { products } from "../../data/products.js";
@@ -17,7 +17,7 @@ dodajUKorpuDugmad.forEach((dugme)=>
             
             if(odabraniProdukt)
             {
-              DodajUKorpu(odabraniProdukt,Number(kvantitet));
+              kart.DodajUKorpu(odabraniProdukt,Number(kvantitet));
               fjaPrikazPoruke(dugme.closest('.product-container').querySelector('.added-to-cart'));
               renderCartQuantity();
             }

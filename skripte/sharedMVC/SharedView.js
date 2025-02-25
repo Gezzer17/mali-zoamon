@@ -1,8 +1,8 @@
-import { returnQuantityOfCart } from "../../data/cart.js";
+import { kart } from "../../data/kart.js";
 
 export let renderCartQuantity = ()=>
   {
     const kvantitetUKorpi = document.querySelector('.cart-quantity');
     
-    kvantitetUKorpi.innerHTML = returnQuantityOfCart();
+    kvantitetUKorpi.innerHTML = kart.returnQuantityOfCart();
   };
