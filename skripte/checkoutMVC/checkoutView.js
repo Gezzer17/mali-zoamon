@@ -34,9 +34,10 @@ export let renderCartBeforeCheckout = () =>
             {
                 let dajMiDatum = objekat.deliverOpcija;
                 let datumPotrebni = deliveryOptions.find(opcija => opcija.id === Number(dajMiDatum));
+                objekat.datumPosiljke = dodajDane(new Date(),datumPotrebni.deliveryDays);
                 gridKorpe.innerHTML +=`<div class="cart-item-container" data-cart-item-id="${objekat.produkt.id}">
                                 <div class="delivery-date">
-                                    ${dodajDane(new Date(),datumPotrebni.deliveryDays)}
+                                    ${objekat.datumPosiljke}
                                 </div>
 
                                 <div class="cart-item-details-grid">

@@ -1,7 +1,9 @@
-
 import * as viewCh from "../checkoutMVC/checkoutView.js" 
 import { returnFormatBrojDana } from "../../data/deliveryOptions.js";
 import { kart } from "../../data/kart.js";
+import { Order,orderiSvi } from "../../data/orderData.js";
+import { deliveryOptions } from "../../data/deliveryOptions.js";
+import { dodajDane } from "../utils/formatDana.js";
 
 
 
@@ -50,6 +52,13 @@ export let  updateDeliveryDateInView = () =>
                 let idProdukta = cartItemContainer.dataset.cartItemId;
                 //UpdateCartDeliveryTime
                 kart.updateDatumDostave(idProdukta,idDeliverya);
+
+                //Ne pitaj me nista sto je ovo ovdje
+                let objekat = kart.productsInCart.find(item=> item.produkt.id ===  idProdukta);
+                let dajMiDatumDeliveryId = objekat.deliverOpcija;
+                let datumPotrebni = deliveryOptions.find(opcija => opcija.id === Number(dajMiDatumDeliveryId));
+                objekat.datumPosiljke = dodajDane(new Date(),datumPotrebni.deliveryDays);
+                
                 //
                 //RerenderDateAndCheckbox
                 viewCh.updateDeliveryDateAndCheckBox(datum,cartItemContainer,potrebniInput);
@@ -86,5 +95,16 @@ export let  updateDeliveryDateInView = () =>
 
     })
 
+
+}
+
+export let checkForClickOnButton = ()=>
+{
+    document.querySelector('.place-order-button').addEventListener('click', () => {
+
+            const novaNarudzba = new Order(new Date().toLocaleDateString(),kart.grandTotalPrice(),kart.returnProductsFromCart());
+            orderiSvi.DodajUKorpu(novaNarudzba);
+            window.location.href = "orders.html";
+    });
 
 }

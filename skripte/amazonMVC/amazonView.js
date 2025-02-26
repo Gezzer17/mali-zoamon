@@ -6,11 +6,7 @@ export let renderProductList = (products,targetElement)=>
 {
     targetElement.innerHTML = "";
     products.forEach(produkt => 
-        {
-            let priprepremaSlike = `rating-${produkt.rating.stars * 10}.png`;
-            let pripremaCijene = (produkt.priceCents/100).toFixed(2);
-            
-            
+        {      
             let divProdukt = ` <div class="product-container" data-product-id =${produkt.id}>
           <div class="product-image-container">
             <img class="product-image"
@@ -23,14 +19,14 @@ export let renderProductList = (products,targetElement)=>
 
           <div class="product-rating-container">
             <img class="product-rating-stars"   
-              src="/images/ratings/${[priprepremaSlike]}">
+              src="${produkt.getSlika()}">
             <div class="product-rating-count link-primary">
               ${produkt.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            \$${pripremaCijene}
+            $${produkt.getPrice()}
           </div>
 
           <div class="product-quantity-container">

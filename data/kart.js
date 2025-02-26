@@ -2,9 +2,16 @@ import { deliveryOptions } from "../data/deliveryOptions.js";
 import formatIznos from "../skripte/utils/formatCurrency.js";
 
 
-export const kart = {
-    productsInCart: [],
-    stimanjeKorpe()
+
+class Kart{
+    productsInCart = []
+
+    constructor() {
+        this.#stimanjeKorpe();
+    }
+
+
+    #stimanjeKorpe()
         {
             if(!localStorage.getItem('proizvodiUKorpi'))
                 {
@@ -13,11 +20,11 @@ export const kart = {
                 else
                 {
                     this.productsInCart = JSON.parse(localStorage.getItem('proizvodiUKorpi'));  
-                }},
+                }}
     savePrijeIzlaska(){
 
         localStorage.setItem('proizvodiUKorpi',JSON.stringify(this.productsInCart));
-    },
+    }
     returnQuantityOfCart()
         {
             let suma = this.productsInCart.reduce((acc,vrijednost)=>
@@ -27,7 +34,7 @@ export const kart = {
                 },0);
         
             return suma;
-    },
+    }
     returnTotalPriceWithoutShipping()
         {
         
@@ -39,7 +46,7 @@ export const kart = {
                
                
                return cijena; 
-    },
+    }
     DeleteFromTheCart(produktId)
         {
             //Primamo produktId
@@ -53,7 +60,7 @@ export const kart = {
             }
             this.savePrijeIzlaska();
         
-    },
+    }
     UpdateKvanitetTogItema(produktID,kvantitet)
         {
             
@@ -67,20 +74,21 @@ export const kart = {
             }
             else
             {
-                console.log("Nismo nasli nista");
+                
             }
             this.savePrijeIzlaska();
         
-    },
+    }
     updateDatumDostave(produktID,deliveryID)
         {
                 let objekat = this.productsInCart.find(objekat=> objekat.produkt.id === produktID);
                 if(objekat != -1)
                 {
                     objekat.deliverOpcija = Number(deliveryID);
+                    
                 }
                 this.savePrijeIzlaska();
-    },
+    }
     returnShippingFee()
         {
         
@@ -94,7 +102,7 @@ export const kart = {
             },0)
         
             return (formatIznos(sumaShippingaFee));
-    },
+    }
     DodajUKorpu(produkt,kvantitet)
         {
         
@@ -112,7 +120,7 @@ export const kart = {
                 
             }
             this.savePrijeIzlaska();
-    },
+    }
     returnSubTotalPriceAndShipping()
         {
             let vrijednost = Number(this.returnShippingFee() + this.returnTotalPriceWithoutShipping());
@@ -124,7 +132,7 @@ export const kart = {
             
         
             return 0;
-    },
+    }
     retrunPriceOfTax()
         {
             let vrijednost = Number(this.returnSubTotalPriceAndShipping()/10);
@@ -134,7 +142,7 @@ export const kart = {
             }
             
             return 0;
-    },
+    }
     grandTotalPrice()
         {
             let vrijednost = Number(this.returnSubTotalPriceAndShipping()+this.retrunPriceOfTax());
@@ -144,11 +152,27 @@ export const kart = {
             }
            
             return 0;
-        }    
-};
+        }   
+    returnProductsFromCart()
+    {
+        let copyDeepNiza = JSON.parse(JSON.stringify(this.productsInCart));
+        return copyDeepNiza;
+    }
+   
 
 
-kart.stimanjeKorpe();
+
+}
+
+
+
+
+
+export const kart = new Kart();
+
+
+
+
 
 
 

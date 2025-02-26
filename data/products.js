@@ -1,3 +1,52 @@
+import formatCurrency from "../skripte/utils/formatCurrency.js";
+
+class Product
+{
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  /**
+   *
+   */
+  constructor(produkt) {
+    this.id = produkt.id,
+    this.image =produkt.image,
+    this.name = produkt.name,
+    this.rating = produkt.rating,
+    this.priceCents = produkt.priceCents
+  }
+
+  getPrice()
+  {
+    return formatCurrency(this.priceCents);
+  }
+  getSlika()
+  {
+    let priprepremaSlike = `rating-${this.rating.stars * 10}.png`;
+    return `/images/ratings/${priprepremaSlike}`;
+  }
+
+}
+
+class Clothing extends Product
+{
+  sizeChartLink;
+
+  /**
+   *
+   */
+  constructor(produkt) {
+    super(produkt);
+    this.sizeChartLink = produkt.sizeChartLink;
+  }
+
+
+}
+
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -657,4 +706,21 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((produktDetalji)=>
+{
+    if(produktDetalji.type)
+    {
+      return new Clothing(produktDetalji);
+    }
+    else
+    {
+      return new Product(produktDetalji);
+    }
+})
+
+export let pronadjiProdukt = (produktId)=>
+{
+
+   return products.find(item=> item.id === produktId);
+
+}

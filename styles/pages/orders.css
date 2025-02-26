@@ -209,3 +209,17 @@
     padding: 12px;
   }
 }
+
+.dodano-u-korpu
+{
+  display: none;
+}
+
+.buy-again-button.added-to-cart .buy-again-message,.buy-again-icon
+{
+  display: none;
+}
+.buy-again-button.added-to-cart .dodano-u-korpu
+{
+  display: block;
+}
